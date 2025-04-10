@@ -9,7 +9,9 @@ type Upload struct {
     Filename   string
     UserID     string
     UploadedAt time.Time
+    Status     string // "pending", "rendered"
 }
+
 
 var (
     uploads      []Upload

@@ -63,7 +63,10 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		Filename:   filename,
 		UserID:     userID,
 		UploadedAt: time.Now(),
+		Status:     "pending",
 	})
+	
+	SimulateRender(filename)
 	
 	w.WriteHeader(http.StatusCreated)
 	fmt.Fprintf(w, "Image uploaded as %s", filename)

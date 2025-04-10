@@ -9,6 +9,8 @@ import (
 	"github.com/namanxgarg/ghibli-backend/pkg/auth"
 	"github.com/namanxgarg/ghibli-backend/internal/upload"
 	"path/filepath"
+	"github.com/namanxgarg/ghibli-backend/internal/order"
+
 
 
 )
@@ -45,6 +47,9 @@ func main() {
 		r.Post("/upload", upload.UploadHandler)
 		r.Get("/my-uploads", upload.ListUserUploadsHandler)
 
+		r.Post("/order", order.PlaceOrderHandler)
+		r.Get("/my-orders", order.ListOrdersHandler)
+
 	})
 
 	//we want it to be public, so outside jwt group
@@ -52,6 +57,9 @@ func main() {
 		filename := chi.URLParam(r, "filename")
 		http.ServeFile(w, r, filepath.Join("uploads", filename))
 	})	
+
+	
+
 
 
     fmt.Println("🚀 Server running on http://localhost:8080")
